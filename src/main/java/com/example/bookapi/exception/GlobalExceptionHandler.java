@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // 🔴 404 - Resource Not Found
+   
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse<Object>> handleNotFound(ResourceNotFoundException ex) {
 
@@ -25,7 +25,6 @@ public class GlobalExceptionHandler {
         );
     }
 
-    // 🔴 400 - Validation Errors (VERY IMPORTANT)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<Object>> handleValidation(MethodArgumentNotValidException ex) {
 
@@ -45,7 +44,6 @@ public class GlobalExceptionHandler {
         );
     }
 
-    // 🔴 400 - Illegal Argument
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ApiResponse<Object>> handleBadRequest(IllegalArgumentException ex) {
 
@@ -59,7 +57,6 @@ public class GlobalExceptionHandler {
         );
     }
 
-    // 🔴 500 - Generic Exception
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Object>> handleGeneric(Exception ex) {
 

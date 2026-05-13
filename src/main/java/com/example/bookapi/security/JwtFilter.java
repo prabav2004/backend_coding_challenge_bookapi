@@ -26,7 +26,7 @@ public class JwtFilter extends GenericFilter {
 
         String path = req.getServletPath();
 
-        // Allow public endpoints
+    
         if (path.startsWith("/auth") ||
             path.startsWith("/v3/api-docs") ||
             path.startsWith("/swagger-ui")) {

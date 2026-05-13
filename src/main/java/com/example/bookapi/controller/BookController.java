@@ -19,7 +19,7 @@ public class BookController {
         this.service = service;
     }
 
-    // GET ALL
+   
     @GetMapping
     public ResponseEntity<ApiResponse<List<BookDTO>>> getAll() {
 
@@ -35,7 +35,6 @@ public class BookController {
         );
     }
 
-    // GET BY ISBN
     @GetMapping("/{isbn}")
     public ResponseEntity<ApiResponse<BookDTO>> getByIsbn(@PathVariable String isbn) {
 
@@ -51,7 +50,6 @@ public class BookController {
         );
     }
 
-    // CREATE
     @PostMapping
     public ResponseEntity<ApiResponse<BookDTO>> create(@Valid @RequestBody BookDTO dto) {
 
@@ -67,7 +65,7 @@ public class BookController {
         );
     }
 
-    // UPDATE
+ 
     @PutMapping("/{isbn}")
     public ResponseEntity<ApiResponse<BookDTO>> update(@PathVariable String isbn,
                                                        @RequestBody BookDTO dto) {
@@ -84,7 +82,7 @@ public class BookController {
         );
     }
 
-    // DELETE
+
     @DeleteMapping("/{isbn}")
     public ResponseEntity<ApiResponse<String>> delete(@PathVariable String isbn) {
 

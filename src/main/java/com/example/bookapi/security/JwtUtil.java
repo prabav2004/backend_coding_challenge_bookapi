@@ -11,14 +11,13 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    // Must be at least 32 characters
+    
     private static final String SECRET = "mysecretkeymysecretkeymysecretkey12";
 
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
-    // 🔐 Generate JWT Token
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)                         // set username
@@ -28,12 +27,10 @@ public class JwtUtil {
                 .compact();
     }
 
-    // 🔍 Extract Username from Token
     public String extractUsername(String token) {
         return extractClaims(token).getSubject();
     }
 
-    // 🔍 Extract Claims
     private Claims extractClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
