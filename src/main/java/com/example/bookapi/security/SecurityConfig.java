@@ -16,13 +16,16 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+            throws Exception {
 
         http
             .csrf(csrf -> csrf.disable())
 
-            // 🔥 Disable default login (IMPORTANT)
+            .cors(cors -> {})
+
             .formLogin(form -> form.disable())
+
             .httpBasic(basic -> basic.disable())
 
             .authorizeHttpRequests(auth -> auth
@@ -31,10 +34,14 @@ public class SecurityConfig {
                             "/swagger-ui/**",
                             "/v3/api-docs/**"
                     ).permitAll()
+
                     .anyRequest().authenticated()
             )
 
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(
+                    jwtFilter,
+                    UsernamePasswordAuthenticationFilter.class
+            );
 
         return http.build();
     }
